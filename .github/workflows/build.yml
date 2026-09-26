@@ -11,6 +11,9 @@ jobs:
         run: |
           unzip TrioKeyboard.zip -d /tmp/src
           cp -r /tmp/src/TrioKeyboard/* .
+      - name: Fix bug in source
+        run: |
+          sed -i 's/cornerRadius = dp(c.radius)/cornerRadius = dp(c.radius).toFloat()/' app/src/main/java/com/trio/keyboard/TrioKeyboardService.kt
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
